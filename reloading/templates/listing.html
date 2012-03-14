@@ -1,0 +1,47 @@
+{% load reloading_filters %}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+
+	<head>
+
+		<title>My Site - {%block pagetitle %}{% endblock %}</title>
+
+	</head>
+
+
+
+	<body>
+
+    <div id="content">
+        <h1 class="documentFirstHeading">Reloading Data</h1>
+        <div class="documentDescription">
+            This is data I've collected from various factory and reloaded ammunition. 
+            Disclaimer: These are my results, and are not guaranteed to be safe loads 
+            for your particular firearm or mine.
+        </div>
+        <dl>
+            {% for r in results %}
+            <dt>
+    
+                <span class="summary">
+                    <a href="http://shelby/reloading/caliber/{{ r.slug }}">{{ r }}</a>
+                </span>
+    
+            </dt>
+    
+            <dd>
+                <span class="description">
+                    {{ r|getWeaponsForCaliber:weapons|join:", " }}
+                </span>
+            </dd>
+    
+                
+                
+            {% endfor %}
+    
+        </dl>
+    </div>
+
+</html>
