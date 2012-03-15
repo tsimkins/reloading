@@ -6,15 +6,18 @@ from models import Caliber, Result, Weapon
 
 def byCaliber(request, slug):
     t = loader.get_template('caliber.html')
-    results = Result.objects.filter(load__caliber__slug=slug).order_by('weapon', 'load__bullet__weight', 'load__powder', 'load__powder_weight')
-    context = Context({'results' : results })
+    calibers = Caliber.objects.all().order_by('name')
+    caliber = Caliber.objects.filter(slug=slug).order_by('name')[0]
+    results = Result.objects.filter(load__caliber__slug=slug).order_by('weapon__description', 'load__bullet__weight', 'load__powder', 'load__powder_weight')
+    weapons = Weapon.objects.all().order_by('description')
+    context = Context({'caliber' : caliber, 'calibers' : calibers, 'results' : results, 'weapons' : weapons })
     return HttpResponse(t.render(context))
     
 def listing(request):
     t = loader.get_template('listing.html')
-    results = Caliber.objects.all().order_by('name')
-    weapons = Weapon.objects.all().order_by('name')
-    context = Context({'results' : results, 'weapons' : weapons })
+    calibers = Caliber.objects.all().order_by('name')
+    weapons = Weapon.objects.all().order_by('description')
+    context = Context({'calibers' : calibers, 'weapons' : weapons, 'caliber' : None })
     return HttpResponse(t.render(context))
 
     

@@ -1,64 +1,77 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+{% extends "base.html" %}
+{% load reloading_filters %}
 
-<html lang="en">
+{% block pagetitle %}{{ caliber }}{% endblock %}
 
-	<head>
+{% block title %}{{ caliber }}{% endblock %}
 
-		<title>My Site - {%block pagetitle %}{% endblock %}</title>
+{% block description %}
+    {{ caliber|getWeaponsForCaliber:weapons|join:", " }}
+{% endblock %}
 
-	</head>
+{% block subbreadcrumbs %}
+<span dir="ltr">
+    <a href="{% url reloading.views.listing %}">Reloading Data</a>
+</span>
 
+<span class="breadcrumbSeparator">
+    &raquo;            
+</span>
 
+<span dir="ltr">
+    <span>{{ caliber }}</span>
+</span>
 
-	<body>
+{% endblock %}   
 
-    <div id="content">
-        <h1 class="documentFirstHeading">Reloading Data</h1>
-        <div id="content-core">
-            {% for r in results %}
-                
-                {% ifchanged r.weapon %}
-                {% if not forloop.first %}
-                    </table>
-                {% endif %}
-    
-                <h2> {{ r.weapon }} </h2>
-                <table class="listing">
-                    <tr>
-                        <th>Manufacturer</th>
-                        <th>Powder (Type)</th>
-                        <th>Bullet (Weight)</th>
-                        <th>Powder (Weight)</th>
-                        <th>Bullet Type</th>
-                        <th>Primer (Type)</th>
-                        <th>Average Velocity</th>
-                        <th>Max Velocity</th>
-                        <th>Min Velocity</th>
-                        <th>Range Velocity</th>
-                        <th>StdDev Velocity</th>
-                        <th>Muzzle Energy (ft-lbs)</th>
-                        <th>Date</th>
-                    </tr>
-                {% endifchanged %}
-    
-                    <tr class="{% cycle 'odd' 'even' %}">
-                        <td>{{ r.load.bullet.manufacturer }}</td>
-                        <td>{{ r.load.powder }}</td>
-                        <td>{{ r.load.bullet.weight }}</td>
-                        <td>{{ r.load.powder_weight }}</td>
-                        <td>{{ r.load.bullet.type }}</td>
-                        <td>{{ r.load.primer }}</td>
-                        <td>{{ r.average }}</td>
-                        <td>{{ r.max }}</td>
-                        <td>{{ r.min }}</td>
-                        <td>{{ r.range }}</td>
-                        <td>{{ r.std }}</td>
-                        <td>{{ r.muzzleEnergy }}</td>
-                        <td>{{ r.date|date:"m/d/Y" }}</td>
-                    </tr>
-                {% endfor %}
-                </table>
-            </div>
-        </div>
+{% block content %}
+    {% for r in results %}
+        
+        {% ifchanged r.weapon %}
+        {% if not forloop.first %}
+            </table>
+        {% endif %}
 
-</html>
+        <h2> {{ r.weapon }} </h2>
+        <table class="listing">
+            <tr>
+                <th>Manufacturer</th>
+                <th>Powder (Type)</th>
+                <th>Bullet (Weight)</th>
+                <th>Powder (Weight)</th>
+                <th>Bullet Type</th>
+                <th>Primer (Type)</th>
+                <th>Average Velocity</th>
+                <th>Max Velocity</th>
+                <th>Min Velocity</th>
+                <th>Range Velocity</th>
+                <th>StdDev Velocity</th>
+                <th>Muzzle Energy (ft-lbs)</th>
+                <th>Date</th>
+            </tr>
+        {% endifchanged %}
+
+            <tr class="{% cycle 'odd' 'even' %}">
+                <td>{{ r.load.bullet.manufacturer }}</td>
+                <td>{{ r.load.powder }}</td>
+                <td>{{ r.load.bullet.weight }}</td>
+                <td>{% if r.load.powder_weight %}
+                        {{ r.load.powder_weight }}
+                    {% else %}
+                        Factory
+                    {% endif %}
+                </td>
+                <td>{{ r.load.bullet.type }}</td>
+                <td>{{ r.load.primer }}</td>
+                <td>{{ r.average }}</td>
+                <td>{{ r.max }}</td>
+                <td>{{ r.min }}</td>
+                <td>{{ r.range }}</td>
+                <td>{{ r.std }}</td>
+                <td>{{ r.muzzleEnergy }}</td>
+                <td>{{ r.date|date:"m/d/Y" }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+
+{% endblock %}

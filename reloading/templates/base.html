@@ -1,0 +1,75 @@
+{% load reloading_filters %}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+
+	<head>
+
+		<title>{%block pagetitle %}Reloading Data{% endblock %} &mdash; Tim Simkins' Website</title>
+
+	</head>
+
+    <base href="/" />
+
+	<body>
+    {% block breadcrumbs %}
+    <div id="portal-breadcrumbs">
+    
+        <a href="http://www.tandj.net/~simkintr">Home</a>
+
+        <span class="breadcrumbSeparator">
+            &raquo;            
+        </span>
+        {% block subbreadcrumbs %}
+        <span dir="ltr">
+            <span>Reloading Data</span>
+        </span>
+        {% endblock %}    
+    </div>
+    {% endblock %}
+
+    {% block navigation %}
+    <ul id="navigation">
+        <li class="section-reloading">
+            <a class="navTreeCurrentItem navTreeCurrentNode">
+                Reloading
+            </a>
+
+            <ul class="navTree navTreeLevel1">
+                {% block subnavigation %}
+                    {% for c in calibers %}
+                    <li class="navTreeItem visualNoMarker">
+
+                        <a class="navTreeItem 
+                               visualNoMarker 
+                               {%if c == caliber %}navTreeCurrentItem{% endif %}"
+                            href="{% url reloading.views.byCaliber slug=c.slug %}">
+                            <span>{{ c }}</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                {% endblock %}
+            </ul>
+
+        </li>
+    </ul>
+    {% endblock %}
+    
+    <div id="content">
+        <h1 class="documentFirstHeading">{% block title %}Reloading Data{% endblock %}</h1>
+        <div class="documentDescription">
+            {% block description %}
+            This is data I've collected from various factory and reloaded ammunition. 
+            Disclaimer: These are my results, and are not guaranteed to be safe loads 
+            for your particular firearm or mine.
+            {% endblock %}
+        </div>
+        <div id="content-core">
+            {% block content %}
+                [Content goes here]
+            {% endblock %}
+        </div>
+    </div>
+
+</html>

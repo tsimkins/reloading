@@ -1,80 +1,26 @@
+{% extends "base.html" %}
 {% load reloading_filters %}
+{%block pagetitle %}Reloading Data{% endblock %}
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html lang="en">
-
-	<head>
-
-		<title>{%block pagetitle %}Reloading Data{% endblock %} &mdash; Tim Simkins' Website</title>
-
-	</head>
-
-    <base href="http://www.tandj.net/~simkintr/reloading/" />
-
-	<body>
-
-    <div id="portal-breadcrumbs">
-    
-        <a href="http://www.tandj.net/~simkintr">Home</a>
-
-        <span class="breadcrumbSeparator">
-            &raquo;            
-        </span>
-        <span dir="ltr">
-            <span>Reloading Data</span>
-        </span>
-    
-    </div>
-
-    <ul id="navigation">
-        <li class="section-reloading">
-            <a class="navTreeCurrentItem navTreeCurrentNode">
-                Reloading
-            </a>
-
-            <ul class="navTree navTreeLevel1">
-                {% for r in results %}
-                <li class="navTreeItem visualNoMarker">
-                    <a href="{{ r.get_absolute_url }}">
-                        <span>{{ r }}</span>
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-
-        </li>
-    </ul>
-    
-    <div id="content">
-        <h1 class="documentFirstHeading">Reloading Data</h1>
-        <div class="documentDescription">
-            This is data I've collected from various factory and reloaded ammunition. 
-            Disclaimer: These are my results, and are not guaranteed to be safe loads 
-            for your particular firearm or mine.
-        </div>
-        <div id="content-core">
-            <dl>
-                {% for r in results %}
+   
+{%block content %}
+        <dl>
+            {% for c in calibers %}
+            <dt>
+        
+                <span class="summary">
+                    <a href="{% url reloading.views.byCaliber slug=c.slug %}">{{ c }}</a>
+                </span>
+        
+            </dt>
+        
+            <dd>
+                <span class="description">
+                    {{ c|getWeaponsForCaliber:weapons|join:", " }}
+                </span>
+            </dd>
                 
-                <dt>
-
-                    <span class="summary">
-                        <a href="{% url reloading.views.byCaliber r.slug %}">{{ r }}</a>
-                    </span>
+            {% endfor %}
         
-                </dt>
-        
-                <dd>
-                    <span class="description">
-                        {{ r|getWeaponsForCaliber:weapons|join:", " }}
-                    </span>
-                </dd>
-                    
-                {% endfor %}
-        
-            </dl>
-        </div>
-    </div>
-
-</html>
+        </dl>
+{% endblock %}
