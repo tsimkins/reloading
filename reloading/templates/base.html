@@ -29,11 +29,11 @@
     </div>
     {% endblock %}
 
-    {% block navigation %}
-    <ul id="navigation">
+    {% block navigation %}aaa
+    <ul id="navigation">aaa
         <li class="section-reloading">
-            <a class="navTreeCurrentItem navTreeCurrentNode">
-                Reloading
+aaa            <a class="navTreeCurrentItem navTreeCurrentNode">
+                Reloading Data
             </a>
 
             <ul class="navTree navTreeLevel1">
@@ -44,17 +44,17 @@
                         <a class="navTreeItem 
                                visualNoMarker 
                                {%if c == caliber %}navTreeCurrentItem{% endif %}"
-                            href="{% url reloading.views.byCaliber slug=c.slug %}">
+                            href="{{ c.get_absolute_url }}">
                             <span>{{ c }}</span>
                         </a>
                     </li>
                     {% endfor %}
-                {% endblock %}
+                {% endblock subnavigation%}
             </ul>
 
         </li>
     </ul>
-    {% endblock %}
+    {% endblock navigation%}
     
     <div id="content">
         <h1 class="documentFirstHeading">{% block title %}Reloading Data{% endblock %}</h1>

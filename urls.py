@@ -12,8 +12,8 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
-    (r'^/*$', 'reloading.views.listing'),
-    (r'^caliber/(?P<slug>[a-z0-9\\-]+)$', 'reloading.views.byCaliber'),
+    url(r'^/*$', 'reloading.views.listing', name='listing_view'),
+    url(r'^caliber/(?P<slug>[a-z0-9\\-]+)$', 'reloading.views.byCaliber', name='caliber_view'),
 )
 
 

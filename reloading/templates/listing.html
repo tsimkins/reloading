@@ -9,7 +9,7 @@
             <dt>
         
                 <span class="summary">
-                    <a href="{% url reloading.views.byCaliber slug=c.slug %}">{{ c }}</a>
+                    <a href="{{ c.get_absolute_url }}">{{ c }}</a>
                 </span>
         
             </dt>

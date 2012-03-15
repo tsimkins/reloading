@@ -3,6 +3,8 @@ from numpy import average, std
 from django.template.defaultfilters import slugify
 from django.core import urlresolvers
 
+site_url = "/~simkintr/reloading-demo"
+
 # Create your models here.
 class Powder(models.Model):
     name=models.CharField(max_length=255)
@@ -25,9 +27,12 @@ class Caliber(models.Model):
             self.slug = slugify(self.name)
         super(Caliber, self).save(*args, **kwargs)
 
-    @models.permalink
     def get_absolute_url(self):
-        return ('reloading.views.byCaliber', (self.slug))
+        permalink = urlresolvers.reverse('caliber_view', kwargs={'slug' : self.slug})
+        if permalink.startswith(site_url):
+            return permalink
+        else:
+            return '%s%s' % (site_url, permalink)
 
 class Weapon(models.Model):
     name=models.CharField(max_length=255)
