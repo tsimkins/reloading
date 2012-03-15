@@ -1,6 +1,7 @@
 from django.db import models
 from numpy import average, std
 from django.template.defaultfilters import slugify
+from django.core import urlresolvers
 
 # Create your models here.
 class Powder(models.Model):
@@ -24,6 +25,9 @@ class Caliber(models.Model):
             self.slug = slugify(self.name)
         super(Caliber, self).save(*args, **kwargs)
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('reloading.views.byCaliber', (self.slug))
 
 class Weapon(models.Model):
     name=models.CharField(max_length=255)
