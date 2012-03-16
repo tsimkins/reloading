@@ -29,10 +29,7 @@ class Caliber(models.Model):
 
     def get_absolute_url(self):
         permalink = urlresolvers.reverse('caliber_view', kwargs={'slug' : self.slug})
-        if permalink.startswith(site_url):
-            return permalink
-        else:
-            return '%s%s' % (site_url, permalink)
+        return permalink
 
 class Weapon(models.Model):
     name=models.CharField(max_length=255)
