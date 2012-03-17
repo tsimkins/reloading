@@ -3,8 +3,6 @@ from numpy import average, std
 from django.template.defaultfilters import slugify
 from django.core import urlresolvers
 
-site_url = "/~simkintr/reloading-demo"
-
 # Create your models here.
 class Powder(models.Model):
     name=models.CharField(max_length=255)
@@ -95,7 +93,8 @@ class Result(models.Model):
     temperature=models.IntegerField(blank=True,null=True)
     shooter=models.ForeignKey(Shooter)
     velocities=models.TextField(max_length=255)
-    
+    notes=models.TextField(max_length=2048,blank=True)
+        
     def __unicode__(self):
         return '%s : %s' % (self.weapon, self.load)
 

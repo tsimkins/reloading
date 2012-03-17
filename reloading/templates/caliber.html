@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% load reloading_filters %}
+{% load markup %}
 
 {% block pagetitle %}{{ caliber }}{% endblock %}
 
 {% block title %}{{ caliber }}{% endblock %}
 
 {% block description %}
-    {{ caliber|getWeaponsForCaliber:weapons|join:", " }}
+    {{ weapons|join:", " }}
 {% endblock %}
 
 {% block subbreadcrumbs %}
@@ -25,14 +26,9 @@
 {% endblock %}   
 
 {% block content %}
-    {% for r in results %}
-        
-        {% ifchanged r.weapon %}
-        {% if not forloop.first %}
-            </table>
-        {% endif %}
+    {% for w,v in results %}
 
-        <h2> {{ r.weapon }} </h2>
+        <h2> {{ w }} </h2>
         <table class="listing">
             <tr>
                 <th>Manufacturer</th>
@@ -49,29 +45,37 @@
                 <th>Muzzle Energy (ft-lbs)</th>
                 <th>Date</th>
             </tr>
-        {% endifchanged %}
-
-            <tr class="{% cycle 'odd' 'even' %}">
-                <td>{{ r.load.bullet.manufacturer }}</td>
-                <td>{{ r.load.powder }}</td>
-                <td>{{ r.load.bullet.weight }}</td>
-                <td>{% if r.load.powder_weight %}
-                        {{ r.load.powder_weight }}
-                    {% else %}
-                        Factory
-                    {% endif %}
-                </td>
-                <td>{{ r.load.bullet.type }}</td>
-                <td>{{ r.load.primer }}</td>
-                <td>{{ r.average }}</td>
-                <td>{{ r.max }}</td>
-                <td>{{ r.min }}</td>
-                <td>{{ r.range }}</td>
-                <td>{{ r.std }}</td>
-                <td>{{ r.muzzleEnergy }}</td>
-                <td>{{ r.date|date:"m/d/Y" }}</td>
-            </tr>
-        {% endfor %}
+            {% for r in v.data %}
+    
+                <tr class="{% cycle 'odd' 'even' %}">
+                    <td>{{ r.load.bullet.manufacturer }}</td>
+                    <td>{{ r.load.powder }}</td>
+                    <td>{{ r.load.bullet.weight }}</td>
+                    <td>{% if r.load.powder_weight %}
+                            {{ r.load.powder_weight }}
+                        {% else %}
+                            Factory
+                        {% endif %}
+                    </td>
+                    <td>{{ r.load.bullet.type }}</td>
+                    <td>{{ r.load.primer }}</td>
+                    <td>{{ r.average }}</td>
+                    <td>{{ r.max }}</td>
+                    <td>{{ r.min }}</td>
+                    <td>{{ r.range }}</td>
+                    <td>{{ r.std }}</td>
+                    <td>{{ r.muzzleEnergy }}</td>
+                    <td>{{ r.date|date:"m/d/Y" }}</td>
+                </tr>
+            {% endfor %}
         </table>
-
+        {% if v.notes %}
+            <h4>Notes</h4>
+            {% for n in v.notes %}
+            <p class="discreet">
+                {{ n|markdown }}
+            </p>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
 {% endblock %}
