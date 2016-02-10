@@ -49,6 +49,9 @@
                         </a>
                     </li>
                     {% endfor %}
+                <li class="hiddenStructure">
+                </li>
+
                 {% endblock subnavigation%}
             </ul>
 
@@ -60,9 +63,7 @@
         <h1 class="documentFirstHeading">{% block title %}Reloading Data{% endblock %}</h1>
         <div class="documentDescription">
             {% block description %}
-            This is data I've collected from various factory and reloaded ammunition. 
-            Disclaimer: These are my results, and are not guaranteed to be safe loads 
-            for your particular firearm or mine.
+            Chronograph data I've collected from various factory and reloaded ammunition. 
             {% endblock %}
         </div>
         <div id="content-core">
@@ -70,6 +71,14 @@
                 [Content goes here]
             {% endblock %}
         </div>
+        <hr />
+        <p class="discreet"><strong>Disclaimer:</strong> These are actual chronograph results for the 
+specified firearm/load combination.  They are provided for informational and comparison purposes only.  This is not a reloading manual. The 
+listed loads and are not guaranteed to be 
+safe loads
+            for your particular firearm or mine.  Always start 10% below the maximum load listed in a reliable and current 
+            reloading manual.
+        </p>
     </div>
 
 </html>

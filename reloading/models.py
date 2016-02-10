@@ -54,6 +54,10 @@ class Bullet(models.Model):
                                                     ('JSP', 'Jacketed Soft Point'),
                                                     ('JHP', 'Jacketed Hollow Point'),
                                                     ('FMJ', 'Full Metal Jacket'),
+                                                    ('OTM', 'Open Tip Match'),
+                                                    ('BTIP', 'VMax/Blitzking/Ballstic Tip'),
+                                                    ('LRN', 'Lead Round Nose'),
+                                                    ('LSWC', 'Lead Semi-Wadcutter'),
                                                     ('LSWCHP', 'Lead Semi-Wadcutter Hollowpoint'),
                                                   )
                         )

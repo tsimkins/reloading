@@ -7,7 +7,6 @@
 {% block title %}{{ caliber }}{% endblock %}
 
 {% block description %}
-    {{ weapons|join:", " }}
 {% endblock %}
 
 {% block subbreadcrumbs %}
@@ -29,14 +28,15 @@
     {% for w,v in results %}
 
         <h2> {{ w }} </h2>
-        <table class="listing">
+        <table class="listing" id="x123">
+            <thead>
             <tr>
-                <th>Manufacturer</th>
-                <th>Powder (Type)</th>
-                <th>Bullet (Weight)</th>
-                <th>Powder (Weight)</th>
+                <th>Company</th>
+                <th>Powder Type</th>
+                <th>Bullet Weight</th>
+                <th>Powder Weight</th>
                 <th>Bullet Type</th>
-                <th>Primer (Type)</th>
+                <th>Primer Type</th>
                 <th>Average Velocity</th>
                 <th>Max Velocity</th>
                 <th>Min Velocity</th>
@@ -45,6 +45,9 @@
                 <th>Muzzle Energy (ft-lbs)</th>
                 <th>Date</th>
             </tr>
+            </thead>
+            <tbody>
+
             {% for r in v.data %}
     
                 <tr class="{% cycle 'odd' 'even' %}">
@@ -68,6 +71,7 @@
                     <td>{{ r.date|date:"m/d/Y" }}</td>
                 </tr>
             {% endfor %}
+            </tbody>
         </table>
         {% if v.notes %}
             <h4>Notes</h4>
