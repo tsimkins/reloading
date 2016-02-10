@@ -15,7 +15,7 @@ class Powder(models.Model):
 class Caliber(models.Model):
     slug=models.SlugField(blank=True)
     name=models.CharField(max_length=255)
-    photo=models.ImageField(upload_to='/usr/local/reloading/reloading_app/images/caliber',blank=True)
+    photo=models.ImageField(upload_to='/usr/local/reloading/app/images/caliber',blank=True)
 
     def __unicode__(self):
         return self.name
@@ -34,7 +34,7 @@ class Weapon(models.Model):
     description=models.CharField(max_length=255)
     caliber=models.ManyToManyField(Caliber)
     barrel_length=models.DecimalField(max_digits=3,decimal_places=1)
-    photo=models.ImageField(upload_to='/usr/local/reloading/reloading_app/images/weapon',blank=True)
+    photo=models.ImageField(upload_to='/usr/local/reloading/app/images/weapon',blank=True)
 
     def __unicode__(self):
         return self.description
