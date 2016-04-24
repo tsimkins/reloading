@@ -12,6 +12,9 @@ class Powder(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        ordering = ('name',)
+
 class Caliber(models.Model):
     slug=models.SlugField(blank=True)
     name=models.CharField(max_length=255)
@@ -29,6 +32,9 @@ class Caliber(models.Model):
         permalink = urlresolvers.reverse('caliber_view', kwargs={'slug' : self.slug})
         return permalink
 
+    class Meta:
+        ordering = ('name',)
+
 class Weapon(models.Model):
     name=models.CharField(max_length=255)
     description=models.CharField(max_length=255)
@@ -38,6 +44,9 @@ class Weapon(models.Model):
 
     def __unicode__(self):
         return self.description
+
+    class Meta:
+        ordering = ('name',)
 
 
 
@@ -66,12 +75,18 @@ class Bullet(models.Model):
     def __unicode__(self):
         return '%d grain %s %s' % (self.weight, self.manufacturer, self.type)
 
+    class Meta:
+        ordering = ('weight','manufacturer')
+
 
 class Primer(models.Model):
     name=models.CharField(max_length=255)
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        ordering = ('name',)
 
 class Load(models.Model):
     caliber=models.ForeignKey(Caliber)
@@ -81,13 +96,20 @@ class Load(models.Model):
     powder_weight=models.DecimalField(max_digits=3,decimal_places=1)
     
     def __unicode__(self):
-        return "%s / %s grain %s" % (self.bullet, self.powder_weight, self.powder)
+        return "%s / %s / %s grain %s / %s " % (self.caliber, self.bullet, self.powder_weight, self.powder, self.primer)
+
+    class Meta:
+        ordering = ('caliber','bullet','powder','powder_weight')
+
 
 class Shooter(models.Model):
     name=models.CharField(max_length=255)
     
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        ordering = ('name',)
 
 
 class Result(models.Model):
@@ -98,6 +120,9 @@ class Result(models.Model):
     shooter=models.ForeignKey(Shooter)
     velocities=models.TextField(max_length=255)
     notes=models.TextField(max_length=2048,blank=True)
+
+    class Meta:
+        ordering = ('weapon', 'caliber', 'load', 'date')
         
     def __unicode__(self):
         return '%s : %s' % (self.weapon, self.load)
