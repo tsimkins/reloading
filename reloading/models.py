@@ -122,7 +122,7 @@ class Result(models.Model):
     notes=models.TextField(max_length=2048,blank=True)
 
     class Meta:
-        ordering = ('weapon', 'caliber', 'load', 'date')
+        ordering = ('weapon', 'load', 'date')
         
     def __unicode__(self):
         return '%s : %s' % (self.weapon, self.load)
