@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load reloading_filters %}
-{% load markup %}
 
 {% block pagetitle %}{{ caliber }}{% endblock %}
 
@@ -11,7 +10,7 @@
 
 {% block subbreadcrumbs %}
 <span dir="ltr">
-    <a href="{% url reloading.views.listing %}">Reloading Data</a>
+    <a href="{% url 'listing_view' %}">Reloading Data</a>
 </span>
 
 <span class="breadcrumbSeparator">
@@ -77,7 +76,7 @@
             <h4>Notes</h4>
             {% for n in v.notes %}
             <p class="discreet">
-                {{ n|markdown }}
+                {{ n }}
             </p>
             {% endfor %}
         {% endif %}
