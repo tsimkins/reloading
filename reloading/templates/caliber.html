@@ -29,7 +29,17 @@
         <form method="POST" action="{% url 'caliber_view' slug %}">
         {% csrf_token %}
         {{ facets }}
+        <div class="visualClear">
+            <input type="submit" value="Search" />
+        </div>
         </form>
+        <div class="visualClear">
+            <form method="POST" action="{% url 'caliber_view' slug %}">
+                {% csrf_token %}
+                <input type="submit" value="Reset" />
+            </form>
+        </div>
+
     </div>
 {% endblock %}
 
