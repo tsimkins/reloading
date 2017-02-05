@@ -1,7 +1,6 @@
 # Django settings for reloading project.
 
-DEBUG = False
-TEMPLATE_DEBUG = DEBUG
+DEBUG = True
 
 ALLOWED_HOSTS=['www.tandj.net','127.0.0.1']
 
@@ -86,7 +85,8 @@ TEMPLATES = [
             'loaders' : (
                 'django.template.loaders.filesystem.Loader',
                 'django.template.loaders.app_directories.Loader',
-            )
+            ),
+            'debug' : DEBUG,
         },
     },
 ]

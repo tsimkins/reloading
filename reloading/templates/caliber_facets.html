@@ -1,0 +1,34 @@
+{% for item in data %}
+    <div class="facet">
+        <h3>{{ item.label }}</h3>
+        <ul>
+            {% for value in item.values %}
+            <li
+                {% if value.disabled %}
+                    class="disabled"
+                {% endif %}
+                >
+                <input 
+                    type="checkbox"
+                    id="{{ item.name }}_{{ forloop.counter }}"
+                    name="{{ item.name }}" 
+                    {% if value.checked %}
+                        checked="checked"
+                    {% endif %}
+                    data-checked="{{ value.checked }}"
+                    {% if value.disabled %}
+                        disabled="disabled"
+                    {% endif %}
+                    value="{{ value.name }}">
+                <label for="{{ item.name }}_{{ forloop.counter }}">
+                    {{ value.name }} ({{ value.count }})
+                </label>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>    
+{% endfor %}
+<div class="visualClear">
+    <input type="submit" value="Search" />
+    <input type="reset" value="Reset" />
+</div>

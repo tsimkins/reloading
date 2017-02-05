@@ -23,6 +23,16 @@
 
 {% endblock %}   
 
+{% block facets %}
+    <div class="facets">
+        <h2>Filter</h2>
+        <form method="POST" action="{% url 'caliber_view' slug %}">
+        {% csrf_token %}
+        {{ facets }}
+        </form>
+    </div>
+{% endblock %}
+
 {% block content %}
     {% for w,v in results %}
 

@@ -8,6 +8,25 @@
 
 		<title>{%block pagetitle %}Reloading Data{% endblock %} &mdash; Tim Simkins' Website</title>
 
+    <style type="text/css">
+        .facet {
+            width: 25%;
+            float: left;
+        }
+        
+        .facet ul {
+            list-style-type: none;
+            padding-left: 0.5em;
+        }
+        
+        .visualClear {
+            clear: both;
+        }
+        
+        li.disabled {
+            color: #999;
+        }
+    </style>
 	</head>
 
     <base href="/" />
@@ -67,6 +86,9 @@
             {% endblock %}
         </div>
         <div id="content-core">
+            {% block facets %}
+                [Facets go here]
+            {% endblock %}
             {% block content %}
                 [Content goes here]
             {% endblock %}
