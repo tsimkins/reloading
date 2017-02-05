@@ -65,6 +65,7 @@ class Bullet(models.Model):
                                                     ('FMJ', 'Full Metal Jacket'),
                                                     ('OTM', 'Open Tip Match'),
                                                     ('BTIP', 'VMax/Blitzking/Ballstic Tip'),
+                                                    ('LFN', 'Lead Flat Nose'),
                                                     ('LRN', 'Lead Round Nose'),
                                                     ('LSWC', 'Lead Semi-Wadcutter'),
                                                     ('LSWCHP', 'Lead Semi-Wadcutter Hollowpoint'),
