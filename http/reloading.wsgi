@@ -15,7 +15,7 @@ os.environ['PYTHON_EGG_CACHE'] = '/usr/local/reloading/egg-cache'
 from lxml import etree
 from diazo.compiler import compile_theme
 
-rules = "/usr/local/reloading/rules.xml"
+rules = "/usr/local/reloading/app/theme/rules.xml"
 
 compiled_theme = compile_theme(rules, read_network=True)
 

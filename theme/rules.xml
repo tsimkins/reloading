@@ -1,0 +1,26 @@
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <theme href="http://www.tandj.net/~simkintr/django" />
+    <replace css:theme="#content" css:content="#content" />
+    <replace css:theme="title" css:content="title" />
+    <replace css:theme="#portal-breadcrumbs" css:content="#portal-breadcrumbs" />
+    <replace css:content="#home-breadcrumb">
+        <a href="http://www.tandj.net/~simkintr"> Home </a>
+    </replace>
+    <drop css:theme="li.section-django" />
+    <append css:theme="li.section-reloading" css:content="li.section-reloading ul" />
+
+    <replace css:content="li.section-reloading li.hiddenStructure">
+<li class="navTreeItem visualNoMarker">
+    <a href="/~simkintr/reloading/notes" class="navTreeItem visualNoMarker">
+        <span>Reloading Notes</span>
+    </a>
+</li>
+    </replace>
+
+
+    <merge css:theme="li.section-reloading a" css:content="li.section-reloading a" attributes="class" />
+</rules>
