@@ -1,6 +1,6 @@
 # Django settings for reloading project.
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS=['www.tandj.net','127.0.0.1']
 
