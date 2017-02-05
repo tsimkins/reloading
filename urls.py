@@ -1,8 +1,7 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import url, include
 
-urlpatterns = patterns('',
-    # Example:
-    (r'^reloading/', include('reloading.urls')),
-)
+urlpatterns = [
+               url(r'^reloading/', include('reloading.urls')),
+]
 
 
