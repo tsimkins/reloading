@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% load reloading_filters %}
 
-{% block pagetitle %}{{ caliber }}{% endblock %}
+{% block pagetitle %}{{ caliber.name }}{% endblock %}
 
-{% block title %}{{ caliber }}{% endblock %}
+{% block title %}{{ caliber.name }}{% endblock %}
 
 {% block description %}
 {% endblock %}
@@ -18,7 +18,7 @@
 </span>
 
 <span dir="ltr">
-    <span>{{ caliber }}</span>
+    <span>{{ caliber.name }}</span>
 </span>
 
 {% endblock %}   
