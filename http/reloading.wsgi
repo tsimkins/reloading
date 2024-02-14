@@ -6,7 +6,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'reloading.settings'
 # http://www.foxhop.net/django-virtualenv-apache-mod_wsgi
 
 import site
-site.addsitedir('/usr/local/reloading/lib/python2.7/site-packages')
+site.addsitedir('/usr/local/reloading/lib/python3.10/site-packages')
 
 os.environ['PYTHON_EGG_CACHE'] = '/usr/local/reloading/egg-cache'
 

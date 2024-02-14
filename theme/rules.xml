@@ -3,12 +3,12 @@
     xmlns:css="http://namespaces.plone.org/diazo/css"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <theme href="http://www.tandj.net/~simkintr/django" />
+    <theme href="https://www.tandj.net/~simkintr/django" />
     <replace css:theme="#content" css:content="#content" />
     <replace css:theme="title" css:content="title" />
     <replace css:theme="#portal-breadcrumbs" css:content="#portal-breadcrumbs" />
     <replace css:content="#home-breadcrumb">
-        <a href="http://www.tandj.net/~simkintr"> Home </a>
+        <a href="https://www.tandj.net/~simkintr"> Home </a>
     </replace>
     <drop css:theme="li.section-django" />
     <append css:theme="li.section-reloading" css:content="li.section-reloading ul" />

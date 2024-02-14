@@ -1,7 +1,7 @@
 from django.db import models
 from numpy import average, std
 from django.template.defaultfilters import slugify
-from django.core import urlresolvers
+from django import urls as urlresolvers
 
 # Create your models here.
 class Powder(models.Model):
@@ -90,10 +90,10 @@ class Primer(models.Model):
         ordering = ('name',)
 
 class Load(models.Model):
-    caliber=models.ForeignKey(Caliber)
-    primer=models.ForeignKey(Primer)
-    powder=models.ForeignKey(Powder)
-    bullet=models.ForeignKey(Bullet)
+    caliber=models.ForeignKey(Caliber, on_delete=models.CASCADE)
+    primer=models.ForeignKey(Primer, on_delete=models.CASCADE)
+    powder=models.ForeignKey(Powder, on_delete=models.CASCADE)
+    bullet=models.ForeignKey(Bullet, on_delete=models.CASCADE)
     powder_weight=models.DecimalField(max_digits=3,decimal_places=1)
     
     def __unicode__(self):
@@ -114,11 +114,11 @@ class Shooter(models.Model):
 
 
 class Result(models.Model):
-    weapon=models.ForeignKey(Weapon)
-    load=models.ForeignKey(Load)
+    weapon=models.ForeignKey(Weapon, on_delete=models.CASCADE)
+    load=models.ForeignKey(Load, on_delete=models.CASCADE)
     date=models.DateField()
     temperature=models.IntegerField(blank=True,null=True)
-    shooter=models.ForeignKey(Shooter)
+    shooter=models.ForeignKey(Shooter, on_delete=models.CASCADE)
     velocities=models.TextField(max_length=255)
     notes=models.TextField(max_length=2048,blank=True)
 

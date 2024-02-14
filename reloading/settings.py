@@ -2,7 +2,7 @@
 
 DEBUG = False
 
-ALLOWED_HOSTS=['www.tandj.net','127.0.0.1']
+ALLOWED_HOSTS=['www.tandj.net','127.0.0.1','new-gonzo.tandj.net']
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
@@ -98,6 +98,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    'reloading',
     'django.contrib.admin',
+    'reloading',
 )

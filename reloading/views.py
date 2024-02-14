@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.template import Context, RequestContext, loader
 from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
-from models import Caliber, Result, Weapon
+from .models import Caliber, Result, Weapon
 from django.shortcuts import render
 
 import datetime
@@ -59,7 +59,7 @@ def byCaliber(request, slug):
     results = {}
     
     for r in filtered_query:
-        w = r.weapon
+        w = r.weapon.name
         if not results.get(w):
             weapons.append(w)
             results[w] = {
@@ -74,7 +74,7 @@ def byCaliber(request, slug):
                        'slug' : slug,
                        'caliber' : caliber, 
                        'calibers' : calibers, 
-                       'results' : sorted(results.iteritems()),
+                       'results' : sorted(results.items()),
                        'facets' : byCaliberFacets(facet_filter, results_query, filtered_query),
                        'weapons' : sorted(weapons) }
 
@@ -84,7 +84,7 @@ def listing(request):
     t = loader.get_template('listing.html')
     calibers = Caliber.objects.all().order_by('name')
     weapons = Weapon.objects.all().order_by('description')
-    context = Context({'calibers' : calibers, 'weapons' : weapons, 'caliber' : None })
+    context = {'calibers' : calibers, 'weapons' : weapons, 'caliber' : None }
     return HttpResponse(t.render(context))
 
 def byCaliberFacets(facet_filter, results_query, filtered_query):
@@ -115,5 +115,5 @@ def byCaliberFacets(facet_filter, results_query, filtered_query):
         )
 
     t = loader.get_template('caliber_facets.html')
-    context = Context({'data' : data})
+    context = {'data' : data}
     return t.render(context)

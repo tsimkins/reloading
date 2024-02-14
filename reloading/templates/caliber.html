@@ -71,7 +71,7 @@
     
                 <tr class="{% cycle 'odd' 'even' %}">
                     <td>{{ r.load.bullet.manufacturer }}</td>
-                    <td>{{ r.load.powder }}</td>
+                    <td>{{ r.load.powder.name }}</td>
                     <td>{{ r.load.bullet.weight }}</td>
                     <td>{% if r.load.powder_weight %}
                             {{ r.load.powder_weight }}
@@ -80,7 +80,7 @@
                         {% endif %}
                     </td>
                     <td>{{ r.load.bullet.type }}</td>
-                    <td>{{ r.load.primer }}</td>
+                    <td>{{ r.load.primer.name }}</td>
                     <td>{{ r.average }}</td>
                     <td>{{ r.max }}</td>
                     <td>{{ r.min }}</td>

@@ -64,7 +64,7 @@
                                visualNoMarker 
                                {%if c == caliber %}navTreeCurrentItem{% endif %}"
                             href="{{ c.get_absolute_url }}">
-                            <span>{{ c }}</span>
+                            <span>{{ c.name }}</span>
                         </a>
                     </li>
                     {% endfor %}

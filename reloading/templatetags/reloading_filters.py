@@ -6,5 +6,5 @@ def getWeaponsForCaliber(caliber, weapons):
     results = []
     for w in weapons:
         if caliber in w.caliber.all():
-            results.append(w)
+            results.append(w.name)
     return results
